@@ -1,0 +1,23 @@
+server:
+  port: 8999
+  ssl:
+    key-store-type: JKS
+    key-store: classpath:/certs/service_provider.jks
+    key-store-password: service_provider_passwd
+    key-alias: service_provider_alias
+    #trust-store settings - check Dockerfile
+
+logging:
+  level:
+    org.springframework.security.saml: DEBUG
+    luis.sample: DEBUG
+
+key-manager:
+  classpath: /certs/service_provider.jks
+  store-pass: service_provider_passwd
+  alias: service_provider_alias
+  signing-algorithm: http://www.w3.org/2001/04/xmldsig-more#rsa-sha256
+  sign-metadata: true
+  metadata-url: https://oidc.transpetro.com.br/auth/realms/MTOR/protocol/saml/descriptor
+  metadata-trust-check: true
+  entity-id: br:com:yourorg:saml_template
