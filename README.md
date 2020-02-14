@@ -34,6 +34,6 @@ This is an example of a SAML client, currently being used for Keycloak clients
 6 - Run reload.sh script to trigger build and initiate a container
 
 * This example was created based on the project from https://github.com/vdenotaris/spring-boot-security-saml-sample
-  Beware maven central may not find all the required libraries!
-* Shibolet maven repository (https://build.shibboleth.net/nexus/content/repositories/releases/) is referenced in pom.xml frm the original project.
+*  Beware maven central may not find all the required libraries!
+ Shibolet maven repository (https://build.shibboleth.net/nexus/content/repositories/releases/) is referenced in pom.xml frm the original project.
 
