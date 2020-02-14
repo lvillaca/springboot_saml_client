@@ -1,5 +1,7 @@
 This is an example of a SpringBoot SAML client, configured via gradle, currently being used for Keycloak clients.
 
+It also simplifies the building process of a Docker container image, and can also dispatch a running container.
+
 The following are usage instructions:
 
 
@@ -41,6 +43,7 @@ The following are usage instructions:
 * *  Set the jks password
 
 6 - Run reload.sh script to trigger build and initiate a container
+
 
 * This example was created based on the project from https://github.com/vdenotaris/spring-boot-security-saml-sample
 *  Beware maven central may not find all the required libraries!
