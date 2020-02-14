@@ -4,8 +4,8 @@ The following are usage instructions:
 
 
 1 - If you do previously hold a certificate, extract a JKS for that, otherwise:
-* * Run keytool_cert_create.sh to create the self-signed jks and X509 certificate
-* * Keep the alias and password handy
+** Run keytool_cert_create.sh to create the self-signed jks and X509 certificate
+** Keep the alias and password handy
 
 2 - Create a SAML client entry under any IDP realm and map it to the app DNS
 * * Import the X509 certificate in Keycloak settings for the client (SAML Keys)
