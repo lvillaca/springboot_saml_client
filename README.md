@@ -2,6 +2,10 @@ This is an example of a SpringBoot SAML client, configured via gradle, currently
 
 It also simplifies the building process of a Docker container image, and can also dispatch a running container.
 
+This example was created based on the project from https://github.com/vdenotaris/spring-boot-security-saml-sample
+Beware maven central may not find all the required libraries!  Shibolet maven repository (https://build.shibboleth.net/nexus/content/repositories/releases/) is referenced in pom.xml frm this original project.
+
+
 The following are usage instructions:
 
 
@@ -26,7 +30,7 @@ The following are usage instructions:
 * the jks from step 1
 * the keycloak truststore jks
 * * The IDP certificate can be obtained via the following command line:
-* * *  openssl s_client -connect idp_host_name:idp_port -showcert
+ * *  openssl s_client -connect idp_host_name:idp_port -showcert
 * * *   Crop the content between ---BEGIN CERTIFICATE--- and ---END CERTIFICATE---
 * * *  And paste in a new file (idp.crt)
 * Further we create the jks
@@ -39,13 +43,9 @@ The following are usage instructions:
 * Set the build process to include it in the new container image
 * Set the Java Options attributes related to the truststore settings:
 * *  Path and jks name
-* *  Set the certificate type
-* *  Set the jks password
+* *  Certificate type
+* *  Jks password
 
 6 - Run reload.sh script to trigger build and initiate a container
 
-
-* This example was created based on the project from https://github.com/vdenotaris/spring-boot-security-saml-sample
-*  Beware maven central may not find all the required libraries!
- Shibolet maven repository (https://build.shibboleth.net/nexus/content/repositories/releases/) is referenced in pom.xml frm the original project.
 
