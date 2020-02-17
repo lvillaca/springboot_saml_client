@@ -26,8 +26,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.saml.SAMLCredential;
+import org.opensaml.saml2.core.Attribute;
+import org.opensaml.xml.schema.XSString;
 
-import luis.sample.util.CurrentUser;
+import transpetro.arqinfo.util.CurrentUser;
 
 @Controller
 public class LoginController {
@@ -43,9 +46,13 @@ public class LoginController {
 			LOG.debug("Current authentication instance from security context is null");
                         return new ResponseEntity<String>("Not ok",HttpStatus.BAD_REQUEST);
 		}  
-		LOG.debug("Current authentication instance from security context: " + this.getClass());
-		return new ResponseEntity<String>("{\"user\":\""+((User)auth.getPrincipal()).getUsername()+"\"}",HttpStatus.OK);
+		LOG.debug("User SAML Attributes : ");
+
+        ((SAMLCredential)auth.getCredentials()).getAttributes().forEach( attribute ->
+          ((Attribute)attribute).getAttributeValues().forEach( xsString ->
+              LOG.debug(((Attribute)attribute).getName()+":"+((XSString) xsString).getValue())));
+              
+        return new ResponseEntity<String>("{\"user\":\""+user.getUsername()+"\"}",HttpStatus.OK);
 	}
 
 }
-
