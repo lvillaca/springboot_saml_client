@@ -49,4 +49,6 @@ The following are usage instructions:
 
 6 - Run reload.sh script to trigger build and initiate a container
 
-
+7 - Add new SAML attributes related to the user
+* User SAML attributes should be mapped (see Mapper, under REALM/client configuration)
+    * Add email and fullname (or any other attribute, and update index.html accordingly)
