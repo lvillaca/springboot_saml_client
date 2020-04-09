@@ -7,22 +7,6 @@ app.controller('loginCtrl', function($scope, $http) {
 		      window.location.href = "/saml/logout";
                 };
 
-    $scope.logout2 =function() {
-             $http({
-                method : 'GET',
-                withCredentials: true,
-                url : '/saml/logout',
-                headers: {'Access-Control-Allow-Origin': '*','referer': 'https://appmonitor.transpetro.com.br'} 
-                }).then(function successCallback(response) { 
-                                      window.location.href = "/saml/logout";
-                               },function errorCallback(error) { 
-                                      window.location.href = "/saml/logout";
-                               });
-		   setTimeout(function () {
-		      window.location.href = "/saml/logout";
-		    }, 2000);
-             return true;
-    };
 
     function getLogin(element) {
             element.user = '';
@@ -44,5 +28,19 @@ app.controller('loginCtrl', function($scope, $http) {
 
     getLogin($scope);
 
+    $scope.setModal = function() {
+        $http({
+                method : 'GET',
+                withCredentials: true,
+                url : '/details'
+                }).then(function successCallback(response) {
+                                   $scope.userdetail = response.data;
+                               },function errorCallback(error) {
+                                   $scope.userdetail = '';
+                               });
+
+//	$scope.userdetail  = JSON.parse('{"email":"luis.teste@teste", "fullName":"Teste 123"}');
+	$('#updateModal').modal('show');
+    };
     
 });

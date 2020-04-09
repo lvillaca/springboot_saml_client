@@ -54,5 +54,33 @@ public class LoginController {
               
         return new ResponseEntity<String>("{\"user\":\""+user.getUsername()+"\"}",HttpStatus.OK);
 	}
+      
+        @RequestMapping("/details")
+        public ResponseEntity<String> details(@CurrentUser User user, Model model) {
+                Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+                if (auth == null) {
+                        LOG.debug("Current authentication instance from security context is null");
+                        return new ResponseEntity<String>("Not ok",HttpStatus.BAD_REQUEST);
+                }
+                LOG.debug("User SAML Attributes : ");
+
+                StringBuilder appender = new StringBuilder();
+
+                appender.append("{");
+
+                ((SAMLCredential)auth.getCredentials()).getAttributes().forEach( attribute ->
+                  ((Attribute)attribute).getAttributeValues().forEach( xsString -> {
+                           if (appender.indexOf(":")!=-1) appender.append(", ");
+                           appender.append("\"");
+                           appender.append(((Attribute)attribute).getName());
+                           appender.append("\":\"");
+                           appender.append(((XSString) xsString).getValue());
+                           appender.append("\"");
+                      }));
+
+                appender.append("}");
+
+                return new ResponseEntity<String>(appender.toString(),HttpStatus.OK);
+        }
 
 }

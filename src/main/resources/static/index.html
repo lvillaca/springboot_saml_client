@@ -48,7 +48,7 @@
             <li class="nav-item dropdown">
               <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" href="#">{{user}} <b class="caret"></b>  </a>
               <ul class="dropdown-menu" role="menu">
-		    <li class="nav-item"><a href="#" class="skel-layers-ignoreHref nav-link">TBD</a></li>
+                    <li class="nav-item"><a class="skel-layers-ignoreHref nav-link" href ng-click="$event.preventDefault();setModal()" >Details</a></li>
 		    <li class="nav-item"><a class="skel-layers-ignoreHref nav-link"  href ng-click="$event.preventDefault();logout();" >Logout</a></li>
 	      </ul>
             </li>
@@ -116,6 +116,53 @@
 
     <!-- JavaScript da aplicacao -->
     <script src="js/dashboard.js"></script>
+
+    <!-- Modal -->
+    <div class="modal fade display:inline-block;" id="updateModal" role="dialog"  aria-labelledby="myModalLabel"
+         aria-hidden="true" data-backdrop="false" >
+        <!-- Modal content-->
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"
+                        id="myModalLabel"><span class="glyphicon glyphicon-stats"></span>Attributes</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                            <div class="row">
+                                <div class='col-md-12'>
+                                    <br/>
+
+                                    <div class="one-half overflow:auto;display:inline;">
+                                        <label for="email" data-toggle="tooltip"
+                                               data-placement="top"
+                                               title="User e-mail">User e-mail:&nbsp;</label>
+                                    </div>
+                                    <div class="last overflow:auto;display:inline;">
+                                        <input readonly type="text" class="form-control" id="email"
+                                               ng-model="userdetail.email"/>
+                                    </div>
+
+
+                                    <div class="one-half overflow:auto;display:inline;">
+                                        <label for="fullName" data-toggle="tooltip"
+                                               data-placement="top"
+                                               title="User full name">Full name:&nbsp;</label>
+                                    </div>
+                                    <div class="last overflow:auto;display:inline;">
+                                        <input readonly type="text" class="form-control" id="fullName"
+                                                ng-model="userdetail.nomecompleto"/>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary " data-dismiss="modal" >OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
   </body>
 
