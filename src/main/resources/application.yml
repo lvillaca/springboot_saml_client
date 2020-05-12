@@ -18,6 +18,6 @@ key-manager:
   alias: service_provider_alias
   signing-algorithm: http://www.w3.org/2001/04/xmldsig-more#rsa-sha256
   sign-metadata: true
-  metadata-url: https://oidc.transpetro.com.br/auth/realms/MTOR/protocol/saml/descriptor
+  metadata-url: https://myidp.com/auth/realms/MYREALM/protocol/saml/descriptor
   metadata-trust-check: true
-  entity-id: br:com:yourorg:saml_template
+  entity-id: idp:entityid
