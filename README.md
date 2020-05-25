@@ -29,7 +29,7 @@ The following are usage instructions:
 
 * Copy into src/main/resources/certs/ : the jks from step 1, and the keycloak truststore jks
 * The IDP certificate can be obtained via the following command line:
-    * openssl s_client -connect idp_host_name:idp_port -showcert
+    * openssl s_client -connect idp_host_name:idp_port -showcerts
     * Crop the content between ---BEGIN CERTIFICATE--- and ---END CERTIFICATE---
     * And paste in a new file (idp.crt)
 
