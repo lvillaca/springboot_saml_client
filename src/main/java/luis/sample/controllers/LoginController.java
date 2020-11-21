@@ -22,15 +22,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.saml.SAMLCredential;
 import org.opensaml.saml2.core.Attribute;
 import org.opensaml.xml.schema.XSString;
-
-import transpetro.arqinfo.util.CurrentUser;
+import luis.sample.util.CurrentUser;
 
 @Controller
 public class LoginController {
@@ -39,30 +37,22 @@ public class LoginController {
 	private static final Logger LOG = LoggerFactory
 			.getLogger(LoginController.class);
 
-	@RequestMapping("/hasLogged")
-	public ResponseEntity<String> landing(@CurrentUser User user, Model model) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (auth == null) {
-			LOG.debug("Current authentication instance from security context is null");
-                        return new ResponseEntity<String>("Not ok",HttpStatus.BAD_REQUEST);
-		}  
-		LOG.debug("User SAML Attributes : ");
+        Authentication getAuthentication() {
+		return SecurityContextHolder.getContext().getAuthentication();
+        } 
 
-        ((SAMLCredential)auth.getCredentials()).getAttributes().forEach( attribute ->
-          ((Attribute)attribute).getAttributeValues().forEach( xsString ->
-              LOG.debug(((Attribute)attribute).getName()+":"+((XSString) xsString).getValue())));
-              
-        return new ResponseEntity<String>("{\"user\":\""+user.getUsername()+"\"}",HttpStatus.OK);
+	@RequestMapping("/hasLogged")
+	public ResponseEntity<String> landing(@CurrentUser User user) {
+                return new ResponseEntity<String>("{\"user\":\""+user.getUsername()+"\"}",HttpStatus.OK);
 	}
       
         @RequestMapping("/details")
-        public ResponseEntity<String> details(@CurrentUser User user, Model model) {
-                Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        public ResponseEntity<String> details() {
+		Authentication auth = getAuthentication();
                 if (auth == null) {
                         LOG.debug("Current authentication instance from security context is null");
                         return new ResponseEntity<String>("Not ok",HttpStatus.BAD_REQUEST);
                 }
-                LOG.debug("User SAML Attributes : ");
 
                 StringBuilder appender = new StringBuilder();
 
